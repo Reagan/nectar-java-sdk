@@ -1,14 +1,29 @@
 plugins {
     id 'java'
+    id 'maven'
+    id 'application'
 }
 
 group 'software.nectar.java'
 version '1.0-SNAPSHOT'
 
+description = """Nectar Java SDK"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = 'software.nectar.java.Nectar'
+
 repositories {
+    maven { url "https://maven.restlet.com" }
     mavenCentral()
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+dependencies {
+    compile group: 'org.json', name: 'json', version: '20210307'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
 }
