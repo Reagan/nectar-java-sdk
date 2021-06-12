@@ -19,7 +19,7 @@ public class TokenFactory extends BaseFactory {
         super(key, secret);
     }
 
-    public Token get(String ref)
+    public Token getToken(String ref)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
         String path = String.format("ref=%s", ref);
@@ -35,5 +35,13 @@ public class TokenFactory extends BaseFactory {
         } else {
             throw new ApiResponseException(response.getStatus().getMessage());
         }
+    }
+
+    public Token generateToken() {
+        return null;
+    }
+
+    public void deleteToken() {
+
     }
 }
