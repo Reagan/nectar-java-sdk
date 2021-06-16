@@ -1,5 +1,7 @@
 package software.nectar.java.factory;
 
+import org.json.JSONObject;
+import software.nectar.java.factory.base.ApiResponse;
 import software.nectar.java.factory.base.BaseFactory;
 import software.nectar.java.models.Credentials;
 
@@ -21,5 +23,8 @@ public class CredentialsFactory extends BaseFactory {
 
     }
 
+    public ApiResponse extractFrom(JSONObject object) {
+        return null;
+    }
 
 }

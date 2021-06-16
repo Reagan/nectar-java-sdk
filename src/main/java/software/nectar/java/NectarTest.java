@@ -11,7 +11,7 @@ public class NectarTest {
 
             Nectar nectar = new Nectar(KEY, SECRET);
             Token token = nectar.getTokenFactory().getToken("590e9044-823f-4904-8c9e-4028b4b0116e");
-            System.out.println("Token " + token);
+            System.out.println(token);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

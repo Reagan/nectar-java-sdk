@@ -21,6 +21,13 @@ public class Token {
         setCreatedAt(createdAt);
     }
 
+    @Override
+    public String toString() {
+        return String.format("Token { ref: %s, token_no: %s, user_ref: %s," +
+                "token_type: %s, meter_no: %s, created_at: %s }",
+                ref, tokenNo, userRef, tokenType, meterNo, createdAt.toString());
+    }
+
     public String getRef() {
         return ref;
     }
