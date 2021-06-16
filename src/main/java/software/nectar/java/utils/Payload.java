@@ -2,27 +2,27 @@ package software.nectar.java.utils;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Payload {
 
-    private HashMap<String, Object> params;
+    private Map<String, String> params;
 
-    public Payload(HashMap<String, Object> params) {
+    public Payload(Map<String, String> params) {
         setParams(params);
     }
 
-    public HashMap<String, Object> getParams() {
+    public Map<String, String> getParams() {
         return params;
     }
 
-    public void setParams(HashMap<String, Object> params) {
+    public void setParams(Map<String, String> params) {
         this.params = params;
     }
 
     public JSONObject toJson() {
         JSONObject obj = new JSONObject();
-        params.forEach((key,value) -> obj.put(key, value));
+        params.forEach(obj::put);
         return obj;
     }
 }

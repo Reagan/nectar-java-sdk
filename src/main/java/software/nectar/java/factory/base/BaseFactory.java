@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 abstract public class BaseFactory<T> {
 
-    protected final String CONTENT_TYPE= "application/json";
+    protected final String JSON_CONTENT_TYPE = "application/json";
 //    protected final String BASE_PATH = "https://api.nectar.software";
     protected final String BASE_PATH = "http://localhost:2000";
     protected String key;
@@ -51,7 +51,7 @@ abstract public class BaseFactory<T> {
         this.secret = secret;
     }
 
-    protected Payload createPayload(HashMap<String, Object> params) {
+    protected Payload createPayload(HashMap<String, String> params) {
         return new Payload(params);
     }
 
@@ -70,14 +70,15 @@ abstract public class BaseFactory<T> {
                 contentType, date.toString(), nonce);
     }
 
-//    protected String post(String path, Payload payload, String contentType)
-//            throws NoSuchAlgorithmException, InvalidKeyException, IOException {
-//        String md5 = md5(payload.toJson().toString());
-//        String nonce = generateNonce();
-//        Date currDate = new Date();
-//        String hmac = generateHMACAuth(secret, Http.POST, path, md5, contentType, currDate, nonce);
-//        return initateRequest(Http.POST, contentType, md5, path, hmac, nonce, payload.toJson().toString(), currDate);
-//    }
+    protected T post(String path, Payload payload, String contentType)
+            throws NoSuchAlgorithmException, InvalidKeyException,
+                    IOException, ApiResponseException {
+        String md5 = md5(payload.toJson().toString());
+        String nonce = generateNonce();
+        Date currDate = new Date();
+        String hmac = generateHMACAuth(secret, Http.POST, path, md5, contentType, currDate, nonce);
+        return initateRequest(Http.POST, contentType, md5, path, hmac, nonce, payload.toJson().toString(), currDate);
+    }
 
     protected T get(String path, String pathArgs, String contentType)
             throws NoSuchAlgorithmException, InvalidKeyException,
