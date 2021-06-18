@@ -15,8 +15,8 @@ public class NectarTest {
             Nectar nectar = new Nectar(KEY, SECRET);
 
             // Get Token
-//            Token obtainedToken = nectar.getTokenFactory().getToken("590e9044-823f-4904-8c9e-4028b4b0116e");
-//            System.out.println(obtainedToken);
+            Token generatedToken = nectar.getTokenFactory().getToken("590e9044-823f-4904-8c9e-4028b4b0116e");
+            System.out.println(String.format("Get Token\n====================\n%s\n", generatedToken));
 
             // Generate token
             Map<String, String> params = new HashMap<>();
@@ -38,8 +38,8 @@ public class NectarTest {
             params.put("decoder_key_generation_algorithm", "02");
             params.put("vending_key", "0abc12def3456789");
             params.put("debug", "false");
-            Token generatedToken = nectar.getTokenFactory().generateToken(params);
-            System.out.println(generatedToken);
+            generatedToken = nectar.getTokenFactory().generateToken(params);
+            System.out.println(String.format("Generate Token\n====================\n%s\n", generatedToken));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
