@@ -1,6 +1,7 @@
 package software.nectar.java;
 
 import software.nectar.java.models.Token;
+import software.nectar.java.models.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +41,10 @@ public class NectarTest {
             params.put("debug", "false");
             generatedToken = nectar.getTokenFactory().generateToken(params);
             System.out.println(String.format("Generate Token\n====================\n%s\n", generatedToken));
+
+            // Get user
+            User user = nectar.getUsersFactory().getUser();
+            System.out.println(String.format("Get User\n====================\n%s\n", user));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
