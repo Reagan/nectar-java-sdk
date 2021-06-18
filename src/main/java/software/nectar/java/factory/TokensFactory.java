@@ -33,10 +33,6 @@ public class TokensFactory extends BaseFactory<Token> {
         return post(TOKEN_PATH, new Payload(params), JSON_CONTENT_TYPE);
     }
 
-    public void deleteToken() {
-
-    }
-
     public Token extractFrom(JSONObject responseObj)
         throws ApiResponseException {
         if (responseObj.getJSONObject("status").getInt("code") == 200) {
