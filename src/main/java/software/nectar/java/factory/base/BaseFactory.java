@@ -1,6 +1,7 @@
 package software.nectar.java.factory.base;
 
 import org.json.JSONObject;
+import software.nectar.java.factory.base.exceptions.ApiResponseException;
 import software.nectar.java.utils.Authentication;
 import software.nectar.java.utils.MD5;
 import software.nectar.java.utils.Nonce;
@@ -17,11 +18,10 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
-abstract public class BaseFactory {
+abstract public class BaseFactory<T> {
 
-    protected final String CONTENT_TYPE= "application/json";
+    protected final String JSON_CONTENT_TYPE = "application/json";
 //    protected final String BASE_PATH = "https://api.nectar.software";
     protected final String BASE_PATH = "http://localhost:2000";
     protected String key;
@@ -51,7 +51,7 @@ abstract public class BaseFactory {
         this.secret = secret;
     }
 
-    protected Payload createPayload(HashMap<String, Object> params) {
+    protected Payload createPayload(HashMap<String, String> params) {
         return new Payload(params);
     }
 
@@ -70,17 +70,19 @@ abstract public class BaseFactory {
                 contentType, date.toString(), nonce);
     }
 
-//    protected String post(String path, Payload payload, String contentType)
-//            throws NoSuchAlgorithmException, InvalidKeyException, IOException {
-//        String md5 = md5(payload.toJson().toString());
-//        String nonce = generateNonce();
-//        Date currDate = new Date();
-//        String hmac = generateHMACAuth(secret, Http.POST, path, md5, contentType, currDate, nonce);
-//        return initateRequest(Http.POST, contentType, md5, path, hmac, nonce, payload.toJson().toString(), currDate);
-//    }
+    protected T post(String path, Payload payload, String contentType)
+            throws NoSuchAlgorithmException, InvalidKeyException,
+                    IOException, ApiResponseException {
+        String md5 = md5(payload.toJson().toString());
+        String nonce = generateNonce();
+        Date currDate = new Date();
+        String hmac = generateHMACAuth(secret, Http.POST, path, md5, contentType, currDate, nonce);
+        return initateRequest(Http.POST, contentType, md5, path, hmac, nonce, payload.toJson().toString(), currDate);
+    }
 
-    protected ApiResponse get(String path, String pathArgs, String contentType)
-            throws NoSuchAlgorithmException, InvalidKeyException, IOException {
+    protected T get(String path, String pathArgs, String contentType)
+            throws NoSuchAlgorithmException, InvalidKeyException,
+                    IOException, ApiResponseException {
         String md5 = md5("");
         Date currDate = new Date();
         String nonce = generateNonce();
@@ -107,10 +109,10 @@ abstract public class BaseFactory {
 //        return initateRequest(Http.PUT, contentType, md5, path, hmac, nonce, payloadStr, currDate);
 //    }
 
-    protected ApiResponse initateRequest(Http method, String contentType, String md5,
+    protected T initateRequest(Http method, String contentType, String md5,
                                     String endpoint, String hmac, String nonce,
                                     String payload, Date date)
-            throws IOException  {
+            throws IOException, ApiResponseException {
 
         URL url = new URL(String.format("%s%s", BASE_PATH, endpoint));
         URLConnection con = url.openConnection();
@@ -146,9 +148,8 @@ abstract public class BaseFactory {
         in.close();
 
          JSONObject responseObj = new JSONObject(response.toString());
-         return new ApiResponse(responseObj.getJSONObject("status").getInt("code"),
-                    responseObj.getJSONObject("status").getString("message"),
-                    responseObj.getJSONObject("status").getString("request_id"),
-                    (Map<String, Object>) responseObj.getJSONObject("data"));
+         return extractFrom(responseObj);
     }
+
+    public abstract T extractFrom(JSONObject object) throws ApiResponseException;
 }

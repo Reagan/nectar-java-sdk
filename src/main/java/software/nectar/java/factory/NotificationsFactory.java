@@ -1,13 +1,15 @@
 package software.nectar.java.factory;
 
+import org.json.JSONObject;
+import software.nectar.java.factory.base.ApiResponse;
 import software.nectar.java.factory.base.BaseFactory;
 import software.nectar.java.models.Notification;
 
 import java.util.List;
 
-public class NotificationFactory extends BaseFactory {
+public class NotificationsFactory extends BaseFactory {
 
-    public NotificationFactory(String key, String secret) {
+    public NotificationsFactory(String key, String secret) {
         super(key, secret);
     }
 
@@ -16,6 +18,10 @@ public class NotificationFactory extends BaseFactory {
     }
 
     public List<Notification> getNotifications() {
+        return null;
+    }
+
+    public ApiResponse extractFrom(JSONObject object) {
         return null;
     }
 }

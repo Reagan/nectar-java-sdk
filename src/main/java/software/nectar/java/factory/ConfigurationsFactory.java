@@ -1,13 +1,15 @@
 package software.nectar.java.factory;
 
+import org.json.JSONObject;
+import software.nectar.java.factory.base.ApiResponse;
 import software.nectar.java.factory.base.BaseFactory;
 import software.nectar.java.models.Configuration;
 
 import java.util.List;
 
-public class ConfigurationFactory extends BaseFactory {
+public class ConfigurationsFactory extends BaseFactory {
 
-    public ConfigurationFactory(String key, String secret) {
+    public ConfigurationsFactory(String key, String secret) {
         super(key, secret);
     }
 
@@ -25,5 +27,9 @@ public class ConfigurationFactory extends BaseFactory {
 
     public void deactivateConfiguration() {
 
+    }
+
+    public ApiResponse extractFrom(JSONObject object) {
+        return null;
     }
 }

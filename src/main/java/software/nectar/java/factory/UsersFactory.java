@@ -1,11 +1,13 @@
 package software.nectar.java.factory;
 
+import org.json.JSONObject;
+import software.nectar.java.factory.base.ApiResponse;
 import software.nectar.java.factory.base.BaseFactory;
 import software.nectar.java.models.User;
 
-public class UserFactory extends BaseFactory {
+public class UsersFactory extends BaseFactory {
 
-    public UserFactory(String key, String secret) {
+    public UsersFactory(String key, String secret) {
         super(key, secret);
     }
 
@@ -23,5 +25,9 @@ public class UserFactory extends BaseFactory {
 
     public void deleteUser() {
 
+    }
+
+    public ApiResponse extractFrom(JSONObject object) {
+        return null;
     }
 }

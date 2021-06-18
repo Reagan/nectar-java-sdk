@@ -1,6 +1,6 @@
 package software.nectar.java;
 
-import software.nectar.java.factory.TokenFactory;
+import software.nectar.java.factory.TokensFactory;
 
 public class Nectar {
 
@@ -28,7 +28,7 @@ public class Nectar {
         this.secret = secret;
     }
 
-    public TokenFactory getTokenFactory() {
-        return new TokenFactory(key, secret);
+    public TokensFactory getTokenFactory() {
+        return new TokensFactory(key, secret);
     }
 }
