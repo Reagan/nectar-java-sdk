@@ -4,11 +4,13 @@ import org.json.JSONObject;
 import software.nectar.java.factory.base.BaseFactory;
 import software.nectar.java.factory.base.exceptions.ApiResponseException;
 import software.nectar.java.models.User;
+import software.nectar.java.utils.Payload;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
+import java.util.Map;
 
 public class UsersFactory extends BaseFactory<User> {
 
@@ -18,8 +20,10 @@ public class UsersFactory extends BaseFactory<User> {
         super(key, secret);
     }
 
-    public User createUser() {
-        return null;
+    public User createUser(Map<String, Object> params)
+            throws NoSuchAlgorithmException, InvalidKeyException,
+            IOException, ApiResponseException {
+        return post(USERS_PATH, new Payload(params), JSON_CONTENT_TYPE);
     }
 
     public User getUser()
@@ -28,12 +32,16 @@ public class UsersFactory extends BaseFactory<User> {
         return get(USERS_PATH, "", JSON_CONTENT_TYPE);
     }
 
-    public User updateUser() {
-        return null;
+    public User updateUser(Map<String, Object> params)
+            throws NoSuchAlgorithmException, InvalidKeyException,
+                    IOException, ApiResponseException{
+        return put(USERS_PATH, new Payload(params),JSON_CONTENT_TYPE);
     }
 
-    public void deleteUser() {
-
+    public void deleteUser()
+            throws NoSuchAlgorithmException, InvalidKeyException,
+                    IOException, ApiResponseException {
+        delete(USERS_PATH, "", JSON_CONTENT_TYPE);
     }
 
     public User extractFrom(JSONObject responseObj)

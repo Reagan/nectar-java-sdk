@@ -6,17 +6,17 @@ import java.util.Map;
 
 public class Payload {
 
-    private Map<String, String> params;
+    private Map<String, Object> params;
 
-    public Payload(Map<String, String> params) {
+    public Payload(Map<String, Object> params) {
         setParams(params);
     }
 
-    public Map<String, String> getParams() {
+    public Map<String, Object> getParams() {
         return params;
     }
 
-    public void setParams(Map<String, String> params) {
+    public void setParams(Map<String, Object> params) {
         this.params = params;
     }
 

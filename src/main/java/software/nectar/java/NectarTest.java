@@ -20,7 +20,7 @@ public class NectarTest {
             System.out.println(String.format("Get Token\n====================\n%s\n", generatedToken));
 
             // Generate token
-            Map<String, String> params = new HashMap<>();
+            Map<String, Object> params = new HashMap<>();
             params.put("class", "2");
             params.put("subclass", "7");
             params.put("token_id", "2018-05-16T07:29");

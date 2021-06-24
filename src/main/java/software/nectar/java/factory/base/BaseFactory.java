@@ -51,7 +51,7 @@ abstract public class BaseFactory<T> {
         this.secret = secret;
     }
 
-    protected Payload createPayload(HashMap<String, String> params) {
+    protected Payload createPayload(HashMap<String, Object> params) {
         return new Payload(params);
     }
 
@@ -90,24 +90,26 @@ abstract public class BaseFactory<T> {
         return initateRequest(Http.GET, contentType, md5, String.format("%s?%s", path, pathArgs), hmac, nonce, null, currDate);
     }
 
-//    protected String delete(String path, String pathArgs, String contentType)
-//            throws NoSuchAlgorithmException, InvalidKeyException, IOException {
-//        String md5 = md5("");
-//        Date currDate = new Date();
-//        String nonce = generateNonce();
-//        String hmac = generateHMACAuth(secret, Http.DELETE, path, md5, contentType, currDate, nonce);
-//        return initateRequest(Http.DELETE, contentType, md5, String.format("%s?%s", path, pathArgs), hmac, nonce, null, currDate);
-//    }
+    protected T delete(String path, String pathArgs, String contentType)
+            throws NoSuchAlgorithmException, InvalidKeyException,
+                    IOException, ApiResponseException {
+        String md5 = md5("");
+        Date currDate = new Date();
+        String nonce = generateNonce();
+        String hmac = generateHMACAuth(secret, Http.DELETE, path, md5, contentType, currDate, nonce);
+        return initateRequest(Http.DELETE, contentType, md5, String.format("%s?%s", path, pathArgs), hmac, nonce, null, currDate);
+    }
 
-//    protected String put(String path, Payload payload, String contentType)
-//            throws NoSuchAlgorithmException, InvalidKeyException, IOException {
-//        String payloadStr = (null != payload) ? payload.toJson().toString() : "";
-//        String md5 = md5(payloadStr);
-//        String nonce = generateNonce();
-//        Date currDate = new Date();
-//        String hmac = generateHMACAuth(secret, Http.PUT, path, md5, contentType, currDate, nonce);
-//        return initateRequest(Http.PUT, contentType, md5, path, hmac, nonce, payloadStr, currDate);
-//    }
+    protected T put(String path, Payload payload, String contentType)
+            throws NoSuchAlgorithmException, InvalidKeyException,
+                    IOException, ApiResponseException {
+        String payloadStr = (null != payload) ? payload.toJson().toString() : "";
+        String md5 = md5(payloadStr);
+        String nonce = generateNonce();
+        Date currDate = new Date();
+        String hmac = generateHMACAuth(secret, Http.PUT, path, md5, contentType, currDate, nonce);
+        return initateRequest(Http.PUT, contentType, md5, path, hmac, nonce, payloadStr, currDate);
+    }
 
     protected T initateRequest(Http method, String contentType, String md5,
                                     String endpoint, String hmac, String nonce,

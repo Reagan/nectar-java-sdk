@@ -27,7 +27,7 @@ public class TokensFactory extends BaseFactory<Token> {
         return get(TOKEN_PATH, path, JSON_CONTENT_TYPE);
     }
 
-    public Token generateToken(Map<String, String> params)
+    public Token generateToken(Map<String, Object> params)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
         return post(TOKEN_PATH, new Payload(params), JSON_CONTENT_TYPE);
