@@ -105,7 +105,7 @@ public class Notification {
     public String toString() {
         return String.format("Notification { ref: %s, subject: %s, text: %s, " +
                 "type: %s, user_ref: %s, affected: %s, read: %s, " +
-                "read_date: %s, created_date:%s }", ref, subject, text, type,
+                "read_date: %s, created_date:%s }\n", ref, subject, text, type,
                 userRef, affected, read, readDate, createdDate);
     }
 }

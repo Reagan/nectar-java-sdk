@@ -25,12 +25,12 @@ public class NectarTest {
 //            test.updateUser();
 //            test.deleteUser();
 //
-            test.getPublicKeys();
+//            test.getPublicKeys();
 //            test.createPublicKey();
 //            test.activatePublicKey();
 //            test.deactivatePublicKey();
 //
-//            test.getNotifications();
+            test.getNotifications();
 //            test.setNotificationsReadStatus();
 //
 //            test.getCredits();
