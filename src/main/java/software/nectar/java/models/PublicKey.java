@@ -68,4 +68,10 @@ public class PublicKey {
         this.updatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return String.format("PublicKey { key: %s, user_ref: %s, activated: %b, " +
+                "ref: %s, created_at: %s, updated_at: %s }", key, userRef,  activated,
+                ref, createdAt.toString(), updatedAt.toString());
+    }
 }

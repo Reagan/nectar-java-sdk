@@ -23,10 +23,10 @@ public class CreditsFactory extends BaseFactory<Credits> {
         super(key, secret);
     }
 
-    public Credits getCredits()
+    public List<Credits> getCredits()
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        return get(CREDITS_PATH, "", JSON_CONTENT_TYPE);
+        return (List<Credits>) get(CREDITS_PATH, "", JSON_CONTENT_TYPE);
     }
 
     public Credits getTransactions()

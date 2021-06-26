@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 
 public class ConfigurationsFactory extends BaseFactory<Configuration> {
@@ -26,10 +27,10 @@ public class ConfigurationsFactory extends BaseFactory<Configuration> {
         return post(CONFIGURATIONS_PATH, new Payload(params), JSON_CONTENT_TYPE);
     }
 
-    public Configuration getConfigurations(String ref, boolean detailed)
+    public List<Configuration> getConfigurations(String ref, boolean detailed)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        return get(CONFIGURATIONS_PATH, String.format("ref=%s&detailed=%b", ref, detailed),
+        return (List<Configuration>) get(CONFIGURATIONS_PATH, String.format("ref=%s&detailed=%b", ref, detailed),
                 JSON_CONTENT_TYPE);
     }
 

@@ -11,6 +11,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class NotificationsFactory extends BaseFactory<Notification> {
@@ -21,10 +22,10 @@ public class NotificationsFactory extends BaseFactory<Notification> {
         super(key, secret);
     }
 
-    public Notification getNotifications()
+    public List<Notification> getNotifications()
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        return get(NOTIFICATIONS_PATH, "", JSON_CONTENT_TYPE);
+        return (List<Notification>) get(NOTIFICATIONS_PATH, "", JSON_CONTENT_TYPE);
     }
 
     public void setNotificationReadStatus(String notificationRef,
