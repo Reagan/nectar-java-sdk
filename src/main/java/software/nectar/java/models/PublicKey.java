@@ -8,16 +8,14 @@ public class PublicKey {
     private boolean activated;
     private String ref;
     private Instant createdAt;
-    private Instant updatedAt;
 
     public PublicKey(String key, String userRef, boolean activated,
-                     String ref, Instant createdAt, Instant updatedAt) {
+                     String ref, Instant createdAt) {
         setKey(key);
         setUserRef(userRef);
         setActivated(activated);
         setRef(ref);
         setCreatedAt(createdAt);
-        setUpdatedAt(updatedAt);
     }
 
     public String getKey() {
@@ -60,18 +58,10 @@ public class PublicKey {
         this.createdAt = createdAt;
     }
 
-    public Instant getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Instant updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     @Override
     public String toString() {
         return String.format("PublicKey { key: %s, user_ref: %s, activated: %b, " +
-                "ref: %s, created_at: %s, updated_at: %s }", key, userRef,  activated,
-                ref, createdAt.toString(), updatedAt.toString());
+                "ref: %s, created_at: %s }\n", key, userRef,  activated,
+                ref, createdAt.toString());
     }
 }

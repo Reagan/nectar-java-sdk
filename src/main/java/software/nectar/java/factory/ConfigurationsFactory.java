@@ -46,6 +46,11 @@ public class ConfigurationsFactory extends BaseFactory<Configuration> {
         delete(String.format("%s?ref=%s", CONFIGURATIONS_PATH, ref), null, JSON_CONTENT_TYPE);
     }
 
+    public List<Configuration> extractMultipleFrom(JSONObject responseObj)
+            throws ApiResponseException {
+        return null;
+    }
+
     public Configuration extractFrom(JSONObject responseObj)
         throws ApiResponseException {
         if (responseObj.getJSONObject("status").getInt("code") == 200) {

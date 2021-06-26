@@ -41,6 +41,11 @@ public class CredentialsFactory extends BaseFactory<Credentials> {
         delete(String.format("%s?ref=%s", CREDENTIALS_PATH, ref), null, JSON_CONTENT_TYPE);
     }
 
+    public List<Credentials> extractMultipleFrom(JSONObject responseObj)
+            throws ApiResponseException {
+        return null;
+    }
+
     public Credentials extractFrom(JSONObject responseObj)
         throws ApiResponseException {
         if (responseObj.getJSONObject("status").getInt("code") == 200) {

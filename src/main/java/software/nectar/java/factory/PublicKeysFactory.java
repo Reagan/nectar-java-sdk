@@ -1,5 +1,6 @@
 package software.nectar.java.factory;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import software.nectar.java.factory.base.BaseFactory;
 import software.nectar.java.factory.base.exceptions.ApiResponseException;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +27,7 @@ public class PublicKeysFactory extends BaseFactory<PublicKey> {
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
         String path = String.format("activated=%b", activated);
-        return (List<PublicKey>) get(PUBLIC_KEYS_PATH, path, JSON_CONTENT_TYPE);
+        return gets(PUBLIC_KEYS_PATH, path, JSON_CONTENT_TYPE);
     }
 
     public PublicKey createPublicKey(Map<String, Object> params)
@@ -46,16 +48,34 @@ public class PublicKeysFactory extends BaseFactory<PublicKey> {
         delete(String.format("%s?ref=%s", PUBLIC_KEYS_PATH, ref), null, JSON_CONTENT_TYPE);
     }
 
+    @Override
     public PublicKey extractFrom(JSONObject responseObj)
         throws ApiResponseException {
         if (responseObj.getJSONObject("status").getInt("code") == 200) {
-            JSONObject token = responseObj.getJSONObject("data").getJSONObject("data");
-            return new PublicKey((String) token.get("key"),
-                    (String) token.get("user_ref"),
-                    (Boolean) token.get("activated"),
-                    (String) token.get("ref"),
-                    Instant.parse((String) token.get("created_at")),
-                    Instant.parse((String) token.get("updated_at")));
+            JSONObject publicKey = responseObj.getJSONObject("data").getJSONObject("data");
+            return new PublicKey((String) publicKey.get("key"),
+                    (String) publicKey.get("user_ref"),
+                    (Boolean) publicKey.get("activated"),
+                    (String) publicKey.get("ref"),
+                    Instant.parse((String) publicKey.get("created_at")));
+        }
+        throw new ApiResponseException(responseObj.getJSONObject("status").getString("message"));
+    }
+
+    @Override
+    public List<PublicKey> extractMultipleFrom(JSONObject responseObj)
+        throws ApiResponseException {
+        if (responseObj.getJSONObject("status").getInt("code") == 200) {
+            JSONArray publicKeys = responseObj.getJSONObject("data").getJSONArray("data");
+            List<PublicKey> extractedPublicKeys = new ArrayList<>();
+            publicKeys.forEach(publicKey -> {
+                extractedPublicKeys.add(new PublicKey((String) ((JSONObject) publicKey).get("key"),
+                        (String) ((JSONObject) publicKey).get("user_ref"),
+                        (Boolean) ((JSONObject) publicKey).get("activated"),
+                        (String) ((JSONObject) publicKey).get("ref"),
+                        Instant.parse((String) ((JSONObject) publicKey).get("created_at"))));
+            });
+            return extractedPublicKeys;
         }
         throw new ApiResponseException(responseObj.getJSONObject("status").getString("message"));
     }

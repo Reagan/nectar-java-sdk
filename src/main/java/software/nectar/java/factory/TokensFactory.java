@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 
 public class TokensFactory extends BaseFactory<Token> {
@@ -31,6 +32,11 @@ public class TokensFactory extends BaseFactory<Token> {
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
         return post(TOKEN_PATH, new Payload(params), JSON_CONTENT_TYPE);
+    }
+
+    public List<Token> extractMultipleFrom(JSONObject responseObj)
+            throws ApiResponseException {
+        return null;
     }
 
     public Token extractFrom(JSONObject responseObj)

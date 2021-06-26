@@ -35,6 +35,11 @@ public class CreditsFactory extends BaseFactory<Credits> {
         return get(CREDITS_PATH, "", JSON_CONTENT_TYPE);
     }
 
+    public List<Credits> extractMultipleFrom(JSONObject responseObj)
+            throws ApiResponseException {
+        return null;
+    }
+
     public Credits extractFrom(JSONObject responseObj)
         throws ApiResponseException{
         if (responseObj.getJSONObject("status").getInt("code") == 200) {

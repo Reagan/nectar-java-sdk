@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 
 public class UsersFactory extends BaseFactory<User> {
@@ -42,6 +43,11 @@ public class UsersFactory extends BaseFactory<User> {
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
         delete(USERS_PATH, "", JSON_CONTENT_TYPE);
+    }
+
+    public List<User> extractMultipleFrom(JSONObject responseObj)
+        throws ApiResponseException {
+        return null;
     }
 
     public User extractFrom(JSONObject responseObj)

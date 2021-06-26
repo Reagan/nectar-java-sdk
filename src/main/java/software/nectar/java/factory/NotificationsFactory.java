@@ -40,6 +40,11 @@ public class NotificationsFactory extends BaseFactory<Notification> {
         put(NOTIFICATIONS_PATH, new Payload(params), JSON_CONTENT_TYPE);
     }
 
+    public List<Notification> extractMultipleFrom(JSONObject responseObj)
+            throws ApiResponseException {
+        return null;
+    }
+
     public Notification extractFrom(JSONObject responseObj)
             throws ApiResponseException {
         if (responseObj.getJSONObject("status").getInt("code") == 200) {

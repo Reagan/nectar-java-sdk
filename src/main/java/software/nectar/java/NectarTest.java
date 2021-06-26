@@ -17,33 +17,33 @@ public class NectarTest {
     public static void main(String[] args) {
         try {
             NectarTest test = new NectarTest();
-            test.getToken();
-            test.generateToken();
+//            test.getToken();
+//            test.generateToken();
 
-            test.getUser();
-            test.createUser();
-            test.updateUser();
-            test.deleteUser();
-
+//            test.getUser();
+//            test.createUser();
+//            test.updateUser();
+//            test.deleteUser();
+//
             test.getPublicKeys();
-            test.createPublicKey();
-            test.activatePublicKey();
-            test.deactivatePublicKey();
-
-            test.getNotifications();
-            test.setNotificationsReadStatus();
-
-            test.getCredits();
-            test.getTransactions();
-
-            test.getCredentials();
-            test.activateCredentials();
-            test.deactivateCredentials();
-
-            test.getConfigurations();
-            test.createConfiguration();
-            test.activateConfiguration();
-            test.deactivateConfiguration();
+//            test.createPublicKey();
+//            test.activatePublicKey();
+//            test.deactivatePublicKey();
+//
+//            test.getNotifications();
+//            test.setNotificationsReadStatus();
+//
+//            test.getCredits();
+//            test.getTransactions();
+//
+//            test.getCredentials();
+//            test.activateCredentials();
+//            test.deactivateCredentials();
+//
+//            test.getConfigurations();
+//            test.createConfiguration();
+//            test.activateConfiguration();
+//            test.deactivateConfiguration();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -76,7 +76,8 @@ public class NectarTest {
         params.put("vending_key", "0abc12def3456789");
         params.put("debug", "false");
 
-        Token generatedToken = nectar.getTokenFactory().generateToken(params);
+        Token generatedToken = nectar.getTokenFactory()
+                .generateToken(params);
         System.out.println(String.format("Generate Token\n====================\n%s\n", generatedToken));
     }
 
@@ -90,6 +91,7 @@ public class NectarTest {
         params.put("first_name", "first_name");
         params.put("last_name", "last_name");
         params.put("username", "username");
+        params.put("password", "password");
         params.put("phone_no", "0700100100");
         params.put("image_url", "https://image.url");
         params.put("email", "user@email.com");
