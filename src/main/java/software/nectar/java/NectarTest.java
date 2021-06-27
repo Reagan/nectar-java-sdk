@@ -30,10 +30,10 @@ public class NectarTest {
 //            test.activatePublicKey();
 //            test.deactivatePublicKey();
 //
-            test.getNotifications();
+//            test.getNotifications();
 //            test.setNotificationsReadStatus();
 //
-//            test.getCredits();
+            test.getCredits();
 //            test.getTransactions();
 //
 //            test.getCredentials();
@@ -154,7 +154,7 @@ public class NectarTest {
     }
 
     private void getCredits() throws Exception {
-        List<Credits> credits = nectar.getCreditsFactory().getCredits();
+        Credits credits = nectar.getCreditsFactory().getCredits();
         System.out.println(String.format("Get Credits\n====================\n%s\n", credits));
     }
 

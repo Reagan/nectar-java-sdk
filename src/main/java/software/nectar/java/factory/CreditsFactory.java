@@ -7,6 +7,7 @@ import software.nectar.java.factory.base.exceptions.ApiResponseException;
 import software.nectar.java.models.Credits;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
@@ -23,16 +24,16 @@ public class CreditsFactory extends BaseFactory<Credits> {
         super(key, secret);
     }
 
-    public List<Credits> getCredits()
+    public Credits getCredits()
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        return (List<Credits>) get(CREDITS_PATH, "", JSON_CONTENT_TYPE);
+        return get(CREDITS_PATH, "", JSON_CONTENT_TYPE);
     }
 
     public Credits getTransactions()
             throws NoSuchAlgorithmException, InvalidKeyException,
             IOException, ApiResponseException {
-        return get(CREDITS_PATH, "", JSON_CONTENT_TYPE);
+        return get(TRANSACTIONS_PATH, "", JSON_CONTENT_TYPE);
     }
 
     public List<Credits> extractMultipleFrom(JSONObject responseObj)
@@ -44,7 +45,7 @@ public class CreditsFactory extends BaseFactory<Credits> {
         throws ApiResponseException{
         if (responseObj.getJSONObject("status").getInt("code") == 200) {
             JSONObject credits = responseObj.getJSONObject("data").getJSONObject("data");
-            return new Credits((Double) credits.get("credits"),
+            return new Credits(((BigDecimal) credits.get("credits")).doubleValue(),
                     extractPurchases(credits),
                     extractConsumption(credits));
         }
@@ -52,33 +53,37 @@ public class CreditsFactory extends BaseFactory<Credits> {
     }
 
     private List<Credits.Purchase> extractPurchases(JSONObject credits) {
-        JSONArray purchases = (JSONArray) credits.get("purchase");
         List<Credits.Purchase> extractedPurchases = new ArrayList<>();
-        for (Object purchase : purchases) {
-            extractedPurchases.add(new Credits.Purchase(
-                    (String) ((JSONObject) purchase).get("ref"),
-                    (String) ((JSONObject) purchase).get("user_ref"),
-                    (Double) ((JSONObject) purchase).get("value"),
-                    (Double) ((JSONObject) purchase).get("units"),
-                    (String) ((JSONObject) purchase).get("currency"),
-                    Instant.parse((String) ((JSONObject) purchase).get("purchase_date"))
-            ));
+        if (credits.has("purchase")) {
+            JSONArray purchases = (JSONArray) credits.get("purchase");
+            for (Object purchase : purchases) {
+                extractedPurchases.add(new Credits.Purchase(
+                        (String) ((JSONObject) purchase).get("ref"),
+                        (String) ((JSONObject) purchase).get("user_ref"),
+                        (Double) ((JSONObject) purchase).get("value"),
+                        (Double) ((JSONObject) purchase).get("units"),
+                        (String) ((JSONObject) purchase).get("currency"),
+                        Instant.parse((String) ((JSONObject) purchase).get("purchase_date"))
+                ));
+            }
         }
         return extractedPurchases;
     }
 
     private List<Credits.Consumption> extractConsumption(JSONObject credits) {
-        List<LinkedHashMap> consumptions = (List<LinkedHashMap>) credits.get("purchase");
         List<Credits.Consumption> extractedConsumptions = new ArrayList<>();
-        consumptions.forEach(consumption -> {
-            extractedConsumptions.add(new Credits.Consumption(
-                    (String) consumption.get("ref"),
-                    (Double) consumption.get("units"),
-                    Instant.parse((String) consumption.get("consumption_date")),
-                    (String) consumption.get("user_ref"),
-                    (String) consumption.get("token_ref")
-            ));
-        });
+        if (credits.has("consumption")) {
+            List<LinkedHashMap> consumptions = (List<LinkedHashMap>) credits.get("purchase");
+            consumptions.forEach(consumption -> {
+                extractedConsumptions.add(new Credits.Consumption(
+                        (String) consumption.get("ref"),
+                        (Double) consumption.get("units"),
+                        Instant.parse((String) consumption.get("consumption_date")),
+                        (String) consumption.get("user_ref"),
+                        (String) consumption.get("token_ref")
+                ));
+            });
+        }
         return extractedConsumptions;
     }
 }

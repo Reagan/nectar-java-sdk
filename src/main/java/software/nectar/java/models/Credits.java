@@ -41,6 +41,11 @@ public class Credits {
         this.consumptions = consumptions;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Credits { credits: %f, purchases: [%s], consumption: [%s] }\n",
+                credits, purchases, consumptions);
+    }
 
     public static class Purchase {
         private String ref;
@@ -107,6 +112,13 @@ public class Credits {
         public void setPurchaseDate(Instant purchaseDate) {
             this.purchaseDate = purchaseDate;
         }
+
+        @Override
+        public String toString() {
+            return String.format("Purchase { ref: %s, userRef: %s, value: %f, " +
+                    "units: %f, currency: %s, purchase_date: %s }\n",
+                    ref, userRef, value, units, currency, purchaseDate);
+        }
     }
 
     public static class Consumption {
@@ -163,6 +175,13 @@ public class Credits {
 
         public void setTokenRef(String tokenRef) {
             this.tokenRef = tokenRef;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("Consumption { ref: %s, units: %f, consumption_date: %s, " +
+                    "user_ref: %s, token_ref: %s } \n",
+                    ref, units, consumptionDate, userRef, tokenRef );
         }
     }
 }
