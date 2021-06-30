@@ -12,7 +12,6 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class CreditsFactory extends BaseFactory<Credits> {
@@ -54,14 +53,14 @@ public class CreditsFactory extends BaseFactory<Credits> {
 
     private List<Credits.Purchase> extractPurchases(JSONObject credits) {
         List<Credits.Purchase> extractedPurchases = new ArrayList<>();
-        if (credits.has("purchase")) {
-            JSONArray purchases = (JSONArray) credits.get("purchase");
+        if (credits.has("purchases")) {
+            JSONArray purchases = (JSONArray) credits.get("purchases");
             for (Object purchase : purchases) {
                 extractedPurchases.add(new Credits.Purchase(
                         (String) ((JSONObject) purchase).get("ref"),
                         (String) ((JSONObject) purchase).get("user_ref"),
-                        (Double) ((JSONObject) purchase).get("value"),
-                        (Double) ((JSONObject) purchase).get("units"),
+                        ((BigDecimal)((JSONObject) purchase).get("value")).doubleValue(),
+                        ((BigDecimal)((JSONObject) purchase).get("units")).doubleValue(),
                         (String) ((JSONObject) purchase).get("currency"),
                         Instant.parse((String) ((JSONObject) purchase).get("purchase_date"))
                 ));
@@ -72,15 +71,15 @@ public class CreditsFactory extends BaseFactory<Credits> {
 
     private List<Credits.Consumption> extractConsumption(JSONObject credits) {
         List<Credits.Consumption> extractedConsumptions = new ArrayList<>();
-        if (credits.has("consumption")) {
-            List<LinkedHashMap> consumptions = (List<LinkedHashMap>) credits.get("purchase");
+        if (credits.has("consumptions")) {
+            JSONArray consumptions = (JSONArray) credits.get("consumptions");
             consumptions.forEach(consumption -> {
                 extractedConsumptions.add(new Credits.Consumption(
-                        (String) consumption.get("ref"),
-                        (Double) consumption.get("units"),
-                        Instant.parse((String) consumption.get("consumption_date")),
-                        (String) consumption.get("user_ref"),
-                        (String) consumption.get("token_ref")
+                        (String) ((JSONObject) consumption).get("ref"),
+                        ((BigDecimal)((JSONObject) consumption).get("units")).doubleValue(),
+                        Instant.parse((String) ((JSONObject) consumption).get("consumption_date")),
+                        (String) ((JSONObject) consumption).get("user_ref"),
+                        (String) ((JSONObject) consumption).get("token_ref")
                 ));
             });
         }

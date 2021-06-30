@@ -34,7 +34,7 @@ public class NectarTest {
 //            test.setNotificationsReadStatus();
 //
             test.getCredits();
-//            test.getTransactions();
+            test.getTransactions();
 //
 //            test.getCredentials();
 //            test.activateCredentials();
