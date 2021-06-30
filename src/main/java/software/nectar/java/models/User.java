@@ -30,15 +30,6 @@ public class User {
         setCreatedAt(createdAt);
     }
 
-    @Override
-    public String toString() {
-        return String.format("User { firstName: %s, lastName: %s, username: %s, " +
-                "password: %s, phoneNo: %s, imageurl: %s, ref: %s, " +
-                "email: %s, activated: %b, createdAt: %s }", getFirstName(), getLastName(),
-                getUsername(), getPassword(), getPhoneNo(), getImageUrl(), ref, getEmail(), isActivated(),
-                getCreatedAt());
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -117,5 +108,14 @@ public class User {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("User { first_name: %s, last_name: %s, username: %s, " +
+                "password: %s, phone_no: %s:, image_url: %s, " +
+                "ref: %s, email: %s, activated: %b, created_at: %s }\n",
+                firstName, lastName, username, password, phoneNo,
+                imageUrl, ref, email, activated, createdAt.toString());
     }
 }

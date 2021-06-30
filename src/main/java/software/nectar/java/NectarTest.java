@@ -33,10 +33,10 @@ public class NectarTest {
 //            test.getNotifications();
 //            test.setNotificationsReadStatus();
 //
-            test.getCredits();
-            test.getTransactions();
+//            test.getCredits();
+//            test.getTransactions();
 //
-//            test.getCredentials();
+            test.getCredentials();
 //            test.activateCredentials();
 //            test.deactivateCredentials();
 //
@@ -164,7 +164,7 @@ public class NectarTest {
     }
 
     private void getCredentials() throws Exception {
-        Credentials credentials = nectar.getCredentialsFactory().getCredentials("ref");
+        Credentials credentials = nectar.getCredentialsFactory().getCredentials("d41879ff-cb85-4bef-89a1-6c3cd7e2dd58");
         System.out.println(String.format("Get Credentials\n====================\n%s\n", credentials));
     }
 

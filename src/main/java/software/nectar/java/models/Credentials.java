@@ -69,4 +69,11 @@ public class Credentials {
     public void setPermissions(List<Permissions> permissions) {
         this.permissions = permissions;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Credentials { key: %s, secret; %s, ref: %s, " +
+                "activated: %b, \n\t%s, Permissions: [ %s ] }\n",
+                key, secret, ref, activated, user, permissions);
+    }
 }

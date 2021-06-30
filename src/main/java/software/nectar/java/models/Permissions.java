@@ -40,4 +40,11 @@ public class Permissions {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Permission { name: %s, identifier: %s, " +
+                "ref: %s, notes: %s }\n",
+                name, identifier, ref, notes);
+    }
 }

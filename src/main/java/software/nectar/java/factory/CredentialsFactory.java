@@ -66,7 +66,8 @@ public class CredentialsFactory extends BaseFactory<Credentials> {
                 (String) user.get("username"),
                 "", // empty password
                 (String) user.get("phone_no"),
-                (String) user.get("image_url"),
+                user.isNull("image_url") ?
+                        "" : (String) user.get("image_url"),
                 (String) user.get("ref"),
                 (String) user.get("email"),
                 (Boolean) user.get("activated"),
