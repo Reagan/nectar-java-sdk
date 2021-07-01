@@ -27,10 +27,10 @@ public class ConfigurationsFactory extends BaseFactory<Configuration> {
         return post(CONFIGURATIONS_PATH, new Payload(params), JSON_CONTENT_TYPE);
     }
 
-    public List<Configuration> getConfigurations(String ref, boolean detailed)
+    public Configuration getConfigurations(String ref, boolean detailed)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        return (List<Configuration>) get(CONFIGURATIONS_PATH, String.format("ref=%s&detailed=%b", ref, detailed),
+        return get(CONFIGURATIONS_PATH, String.format("ref=%s&detailed=%b", ref, detailed),
                 JSON_CONTENT_TYPE);
     }
 
@@ -54,11 +54,12 @@ public class ConfigurationsFactory extends BaseFactory<Configuration> {
     public Configuration extractFrom(JSONObject responseObj)
         throws ApiResponseException {
         if (responseObj.getJSONObject("status").getInt("code") == 200) {
-            JSONObject token = responseObj.getJSONObject("data").getJSONObject("data");
-            return new Configuration((String) token.get("user_ref"),
-                    (Boolean) token.get("activated"),
-                    (String) token.get("ref"),
-                    Instant.parse((String) token.get("created_at")));
+            JSONObject configuration = responseObj.getJSONObject("data").getJSONObject("data");
+            return new Configuration((String) configuration.get("name"),
+                    (String) configuration.get("user_ref"),
+                    (Boolean) configuration.get("activated"),
+                    (String) configuration.get("ref"),
+                    Instant.parse((String) configuration.get("created_at")));
         }
         throw new ApiResponseException(responseObj.getJSONObject("status").getString("message"));
     }

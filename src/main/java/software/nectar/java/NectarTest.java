@@ -36,11 +36,11 @@ public class NectarTest {
 //            test.getCredits();
 //            test.getTransactions();
 //
-            test.getCredentials();
+//            test.getCredentials();
 //            test.activateCredentials();
 //            test.deactivateCredentials();
 //
-//            test.getConfigurations();
+            test.getConfiguration();
 //            test.createConfiguration();
 //            test.activateConfiguration();
 //            test.deactivateConfiguration();
@@ -127,6 +127,7 @@ public class NectarTest {
 
     private void createPublicKey() throws Exception {
         Map<String, Object> params = new HashMap<>();
+        params.put("name", "Public Key");
         params.put("public_key", "public_key");
         params.put("activated", true);
         PublicKey publicKey = nectar.getPublicKeysFactory().createPublicKey(params);
@@ -178,13 +179,14 @@ public class NectarTest {
         nectar.getCredentialsFactory().deactivateCredentials("ref");
     }
 
-    private void getConfigurations() throws Exception {
-        List<Configuration> configurations = nectar.getConfigurationsFactory().getConfigurations("ref", true);
-        System.out.println(String.format("Get Configurations\n====================\n%s\n", configurations));
+    private void getConfiguration() throws Exception {
+        Configuration configuration = nectar.getConfigurationsFactory().getConfigurations("47693f75-b77f-4280-b00f-9c0d90111a63", true);
+        System.out.println(String.format("Get Configurations\n====================\n%s\n", configuration));
     }
 
     public void createConfiguration() throws Exception {
         Map<String, Object> params = new HashMap<>();
+        params.put("name", "Config");
         params.put("data", "data");
         params.put("digest", "digest");
         params.put("key", "key");

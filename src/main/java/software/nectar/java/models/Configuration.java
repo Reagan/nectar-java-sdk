@@ -4,17 +4,26 @@ import java.time.Instant;
 
 public class Configuration {
 
+    private String name;
     private String userRef;
     private boolean activated;
     private String ref;
     private Instant createdAt;
 
-    public Configuration(String userRef, boolean activated,
+    public Configuration(String name, String userRef, boolean activated,
                          String ref, Instant createdAt) {
         setUserRef(userRef);
         setActivated(activated);
         setRef(ref);
         setCreatedAt(createdAt);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUserRef() {
@@ -47,5 +56,12 @@ public class Configuration {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Configuration { ref: %s, user_ref: %s, " +
+                " activated: %b, created_at: %s }\n",
+                ref, userRef, activated, createdAt);
     }
 }
