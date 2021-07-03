@@ -21,22 +21,24 @@ public class UsersFactory extends BaseFactory<User> {
         super(key, secret);
     }
 
-    public User createUser(Map<String, Object> params)
+    public String createUser(Map<String, Object> params)
             throws NoSuchAlgorithmException, InvalidKeyException,
             IOException, ApiResponseException {
-        return post(USERS_PATH, new Payload(params), JSON_CONTENT_TYPE);
+        JSONObject resp = post(USERS_PATH, new Payload(params), JSON_CONTENT_TYPE);
+        return (String) ((JSONObject) resp.get("data")).get("user_ref");
     }
 
     public User getUser()
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        return get(USERS_PATH, "", JSON_CONTENT_TYPE);
+        return extractFrom(get(USERS_PATH, "", JSON_CONTENT_TYPE));
     }
 
     public User updateUser(Map<String, Object> params)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException{
-        return put(USERS_PATH, new Payload(params),JSON_CONTENT_TYPE);
+//        return put(USERS_PATH, new Payload(params),JSON_CONTENT_TYPE);
+        return null;
     }
 
     public void deleteUser()

@@ -27,7 +27,7 @@ public class NotificationsFactory extends BaseFactory<Notification> {
     public List<Notification> getNotifications()
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        return gets(NOTIFICATIONS_PATH, "", JSON_CONTENT_TYPE);
+        return extractMultipleFrom(gets(NOTIFICATIONS_PATH, "", JSON_CONTENT_TYPE));
     }
 
     public void setNotificationReadStatus(String notificationRef,

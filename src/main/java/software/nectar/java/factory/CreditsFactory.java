@@ -26,13 +26,13 @@ public class CreditsFactory extends BaseFactory<Credits> {
     public Credits getCredits()
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        return get(CREDITS_PATH, "", JSON_CONTENT_TYPE);
+        return extractFrom(get(CREDITS_PATH, "", JSON_CONTENT_TYPE));
     }
 
     public Credits getTransactions()
             throws NoSuchAlgorithmException, InvalidKeyException,
             IOException, ApiResponseException {
-        return get(TRANSACTIONS_PATH, "", JSON_CONTENT_TYPE);
+        return extractFrom(get(TRANSACTIONS_PATH, "", JSON_CONTENT_TYPE));
     }
 
     public List<Credits> extractMultipleFrom(JSONObject responseObj)

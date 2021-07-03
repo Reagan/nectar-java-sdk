@@ -26,7 +26,7 @@ public class CredentialsFactory extends BaseFactory<Credentials> {
     public Credentials getCredentials(String ref)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException  {
-        return get(CREDENTIALS_PATH, String.format("ref=%s", ref), JSON_CONTENT_TYPE);
+        return extractFrom(get(CREDENTIALS_PATH, String.format("ref=%s", ref), JSON_CONTENT_TYPE));
     }
 
     public void activateCredentials(String ref)

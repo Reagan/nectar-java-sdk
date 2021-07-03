@@ -4,7 +4,6 @@ import org.json.JSONObject;
 import software.nectar.java.factory.base.BaseFactory;
 import software.nectar.java.factory.base.exceptions.ApiResponseException;
 import software.nectar.java.models.Configuration;
-import software.nectar.java.utils.Payload;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -24,14 +23,15 @@ public class ConfigurationsFactory extends BaseFactory<Configuration> {
     public Configuration createConfiguration(Map<String, Object> params)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        return post(CONFIGURATIONS_PATH, new Payload(params), JSON_CONTENT_TYPE);
+//        return post(CONFIGURATIONS_PATH, new Payload(params), JSON_CONTENT_TYPE);
+        return null;
     }
 
     public Configuration getConfigurations(String ref, boolean detailed)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        return get(CONFIGURATIONS_PATH, String.format("ref=%s&detailed=%b", ref, detailed),
-                JSON_CONTENT_TYPE);
+        return extractFrom(get(CONFIGURATIONS_PATH, String.format("ref=%s&detailed=%b", ref, detailed),
+                JSON_CONTENT_TYPE));
     }
 
     public void activateConfiguration(String ref)

@@ -70,27 +70,27 @@ abstract public class BaseFactory<T> {
                 contentType, date.toString(), nonce);
     }
 
-    protected T post(String path, Payload payload, String contentType)
+    protected JSONObject post(String path, Payload payload, String contentType)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
         String md5 = md5(payload.toJson().toString());
         String nonce = generateNonce();
         Date currDate = new Date();
         String hmac = generateHMACAuth(secret, Http.POST, path, md5, contentType, currDate, nonce);
-        return initateRequest(Http.POST, contentType, md5, path, hmac, nonce, payload.toJson().toString(), currDate);
+        return initiateRequest(Http.POST, contentType, md5, path, hmac, nonce, payload.toJson().toString(), currDate);
     }
 
-    protected T get(String path, String pathArgs, String contentType)
+    protected JSONObject get(String path, String pathArgs, String contentType)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
         String md5 = md5("");
         Date currDate = new Date();
         String nonce = generateNonce();
         String hmac = generateHMACAuth(secret, Http.GET, path, md5, contentType, currDate, nonce);
-        return initateRequest(Http.GET, contentType, md5, String.format("%s?%s", path, pathArgs), hmac, nonce, null, currDate);
+        return initiateRequest(Http.GET, contentType, md5, String.format("%s?%s", path, pathArgs), hmac, nonce, null, currDate);
     }
 
-    protected List<T> gets(String path, String pathArgs, String contentType)
+    protected JSONObject gets(String path, String pathArgs, String contentType)
             throws NoSuchAlgorithmException, InvalidKeyException,
             IOException, ApiResponseException {
         String md5 = md5("");
@@ -100,17 +100,17 @@ abstract public class BaseFactory<T> {
         return initiateMultipleResponseRequest(Http.GET, contentType, md5, String.format("%s?%s", path, pathArgs), hmac, nonce, null, currDate);
     }
 
-    protected T delete(String path, String pathArgs, String contentType)
+    protected JSONObject delete(String path, String pathArgs, String contentType)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
         String md5 = md5("");
         Date currDate = new Date();
         String nonce = generateNonce();
         String hmac = generateHMACAuth(secret, Http.DELETE, path, md5, contentType, currDate, nonce);
-        return initateRequest(Http.DELETE, contentType, md5, String.format("%s?%s", path, pathArgs), hmac, nonce, null, currDate);
+        return initiateRequest(Http.DELETE, contentType, md5, String.format("%s?%s", path, pathArgs), hmac, nonce, null, currDate);
     }
 
-    protected T put(String path, Payload payload, String contentType)
+    protected JSONObject put(String path, Payload payload, String contentType)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
         String payloadStr = (null != payload) ? payload.toJson().toString() : "";
@@ -118,24 +118,24 @@ abstract public class BaseFactory<T> {
         String nonce = generateNonce();
         Date currDate = new Date();
         String hmac = generateHMACAuth(secret, Http.PUT, path, md5, contentType, currDate, nonce);
-        return initateRequest(Http.PUT, contentType, md5, path, hmac, nonce, payloadStr, currDate);
+        return initiateRequest(Http.PUT, contentType, md5, path, hmac, nonce, payloadStr, currDate);
     }
 
-    protected List<T> initiateMultipleResponseRequest(Http method, String contentType, String md5,
+    protected JSONObject initiateMultipleResponseRequest(Http method, String contentType, String md5,
                                               String endpoint, String hmac, String nonce,
                                               String payload, Date date)
             throws IOException, ApiResponseException {
-        return extractMultipleFrom(makeRequest(method, contentType, md5,
-                endpoint, hmac, nonce, payload, date));
+        return makeRequest(method, contentType, md5,
+                endpoint, hmac, nonce, payload, date);
     }
 
-    protected T initateRequest(Http method, String contentType, String md5,
-                                    String endpoint, String hmac, String nonce,
-                                    String payload, Date date)
+    protected JSONObject initiateRequest(Http method, String contentType, String md5,
+                                String endpoint, String hmac, String nonce,
+                                String payload, Date date)
             throws IOException, ApiResponseException {
 
-        return extractFrom(makeRequest(method, contentType, md5,
-                endpoint, hmac, nonce, payload, date));
+        return makeRequest(method, contentType, md5,
+                endpoint, hmac, nonce, payload, date);
     }
 
     public abstract T extractFrom(JSONObject object) throws ApiResponseException;
@@ -145,7 +145,7 @@ abstract public class BaseFactory<T> {
     private JSONObject makeRequest(Http method, String contentType, String md5,
                                    String endpoint, String hmac, String nonce,
                                    String payload, Date date)
-            throws IOException, ApiResponseException {
+            throws IOException {
         URL url = new URL(String.format("%s%s", BASE_PATH, endpoint));
         URLConnection con = url.openConnection();
         HttpURLConnection http = (HttpURLConnection) con;

@@ -21,7 +21,7 @@ public class NectarTest {
 //            test.generateToken();
 
 //            test.getUser();
-//            test.createUser();
+            test.createUser();
 //            test.updateUser();
 //            test.deleteUser();
 //
@@ -40,7 +40,7 @@ public class NectarTest {
 //            test.activateCredentials();
 //            test.deactivateCredentials();
 //
-            test.getConfiguration();
+//            test.getConfiguration();
 //            test.createConfiguration();
 //            test.activateConfiguration();
 //            test.deactivateConfiguration();
@@ -96,8 +96,8 @@ public class NectarTest {
         params.put("image_url", "https://image.url");
         params.put("email", "user@email.com");
         params.put("activated", true);
-        User user = nectar.getUsersFactory().createUser(params);
-        System.out.println(String.format("Create User\n====================\n%s\n", user));
+        String createdUserRef = nectar.getUsersFactory().createUser(params);
+        System.out.println(String.format("Create User\n====================\n%s\n", createdUserRef));
     }
 
     private void updateUser() throws Exception {
