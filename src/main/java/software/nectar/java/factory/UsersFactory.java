@@ -34,11 +34,10 @@ public class UsersFactory extends BaseFactory<User> {
         return extractFrom(get(USERS_PATH, "", JSON_CONTENT_TYPE));
     }
 
-    public User updateUser(Map<String, Object> params)
+    public void updateUser(Map<String, Object> params)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException{
-//        return put(USERS_PATH, new Payload(params),JSON_CONTENT_TYPE);
-        return null;
+        JSONObject resp = put(USERS_PATH, new Payload(params),JSON_CONTENT_TYPE);
     }
 
     public void deleteUser()

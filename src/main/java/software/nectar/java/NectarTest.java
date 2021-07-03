@@ -21,8 +21,8 @@ public class NectarTest {
 //            test.generateToken();
 
 //            test.getUser();
-            test.createUser();
-//            test.updateUser();
+//            test.createUser();
+            test.updateUser();
 //            test.deleteUser();
 //
 //            test.getPublicKeys();
@@ -105,13 +105,13 @@ public class NectarTest {
         params.put("first_name", "first_name");
         params.put("last_name", "last_name");
         params.put("username", "username");
+        params.put("password", "password");
         params.put("phone_no", "0700100100");
         params.put("image_url", "https://image.url");
         params.put("email", "user@email.com");
         params.put("activated", true);
-        params.put("ref", "ref");
-        User user = nectar.getUsersFactory().updateUser(params);
-        System.out.println(String.format("Update User\n====================\n%s\n", user));
+        nectar.getUsersFactory().updateUser(params);
+        System.out.println(String.format("Update User\n====================\n"));
     }
 
     private void deleteUser() throws Exception {
