@@ -22,8 +22,8 @@ public class NectarTest {
 
 //            test.getUser();
 //            test.createUser();
-            test.updateUser();
-//            test.deleteUser();
+//            test.updateUser();
+            test.deleteUser();
 //
 //            test.getPublicKeys();
 //            test.createPublicKey();
@@ -116,7 +116,7 @@ public class NectarTest {
 
     private void deleteUser() throws Exception {
         nectar.getUsersFactory().deleteUser();
-        System.out.println("Delete User\n====================\n%s\n");
+        System.out.println("Delete User\n====================\n");
     }
 
     private void getPublicKeys() throws Exception {
