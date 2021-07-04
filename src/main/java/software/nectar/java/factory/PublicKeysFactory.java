@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import software.nectar.java.factory.base.BaseFactory;
 import software.nectar.java.factory.base.exceptions.ApiResponseException;
 import software.nectar.java.models.PublicKey;
+import software.nectar.java.utils.Payload;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -32,8 +33,7 @@ public class PublicKeysFactory extends BaseFactory<PublicKey> {
     public PublicKey createPublicKey(Map<String, Object> params)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-//        return post(PUBLIC_KEYS_PATH, new Payload(params), JSON_CONTENT_TYPE);
-        return null;
+        return extractFrom(post(PUBLIC_KEYS_PATH, new Payload(params), JSON_CONTENT_TYPE));
     }
 
     public void activatePublicKey(String ref)
