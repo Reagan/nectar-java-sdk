@@ -27,11 +27,11 @@ public class NectarTest {
 //
 //            test.getPublicKeys();
 //            test.createPublicKey();
-            test.activatePublicKey();
+//            test.activatePublicKey();
 //            test.deactivatePublicKey();
 //
 //            test.getNotifications();
-//            test.setNotificationsReadStatus();
+            test.setNotificationsReadStatus();
 //
 //            test.getCredits();
 //            test.getTransactions();
@@ -140,7 +140,7 @@ public class NectarTest {
     }
 
     private void deactivatePublicKey() throws Exception {
-        nectar.getPublicKeysFactory().deactivatePublicKey("ref");
+        nectar.getPublicKeysFactory().deactivatePublicKey("d97bf39e-94ce-4fe9-8057-02d97eb3cbca");
         System.out.println("Deactivate Public Key\n====================\n");
     }
 
@@ -150,8 +150,8 @@ public class NectarTest {
     }
 
     private void setNotificationsReadStatus() throws Exception {
-        System.out.println("Set Notification Read Status\n====================\n%s\n");
-        nectar.getNotificationsFactory().setNotificationReadStatus("ref", true, Instant.now().toEpochMilli());
+        System.out.println("Set Notification Read Status\n====================\n");
+        nectar.getNotificationsFactory().setNotificationReadStatus("931ef4e4-b375-40d8-b58e-c1874792ce64", true, Instant.now().toEpochMilli());
     }
 
     private void getCredits() throws Exception {
