@@ -31,13 +31,13 @@ public class NectarTest {
 //            test.deactivatePublicKey();
 //
 //            test.getNotifications();
-            test.setNotificationsReadStatus();
+//            test.setNotificationsReadStatus();
 //
 //            test.getCredits();
 //            test.getTransactions();
 //
 //            test.getCredentials();
-//            test.activateCredentials();
+            test.activateCredentials();
 //            test.deactivateCredentials();
 //
 //            test.getConfiguration();
@@ -170,8 +170,8 @@ public class NectarTest {
     }
 
     private void activateCredentials() throws Exception {
-        System.out.println("Activate Credentials\n====================\n%s\n");
-        nectar.getCredentialsFactory().activateCredentials("ref");
+        System.out.println("Activate Credentials\n====================\n");
+        nectar.getCredentialsFactory().activateCredentials("d1978978-5535-4c37-b4de-b05dbe2f09d4");
     }
 
     private void deactivateCredentials() throws Exception {

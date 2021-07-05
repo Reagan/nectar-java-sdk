@@ -32,7 +32,7 @@ public class CredentialsFactory extends BaseFactory<Credentials> {
     public void activateCredentials(String ref)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        put(CREDENTIALS_PATH, String.format("%s?ref=%s", ref), null, JSON_CONTENT_TYPE);
+        put(CREDENTIALS_PATH, String.format("ref=%s", ref), null, JSON_CONTENT_TYPE);
     }
 
     public void deactivateCredentials(String ref)
