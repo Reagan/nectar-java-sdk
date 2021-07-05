@@ -110,7 +110,7 @@ abstract public class BaseFactory<T> {
         return initiateRequest(Http.DELETE, contentType, md5, String.format("%s?%s", path, pathArgs), hmac, nonce, null, currDate);
     }
 
-    protected JSONObject put(String path, Payload payload, String contentType)
+    protected JSONObject put(String path, String pathArgs, Payload payload, String contentType)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
         String payloadStr = (null != payload) ? payload.toJson().toString() : "";
@@ -118,7 +118,7 @@ abstract public class BaseFactory<T> {
         String nonce = generateNonce();
         Date currDate = new Date();
         String hmac = generateHMACAuth(secret, Http.PUT, path, md5, contentType, currDate, nonce);
-        return initiateRequest(Http.PUT, contentType, md5, path, hmac, nonce, payloadStr, currDate);
+        return initiateRequest(Http.PUT, contentType, md5, String.format("%s?%s", path, pathArgs), hmac, nonce, payloadStr, currDate);
     }
 
     protected JSONObject initiateMultipleResponseRequest(Http method, String contentType, String md5,

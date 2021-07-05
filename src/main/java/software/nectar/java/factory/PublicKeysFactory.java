@@ -39,13 +39,13 @@ public class PublicKeysFactory extends BaseFactory<PublicKey> {
     public void activatePublicKey(String ref)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        put(String.format("%s?ref=%s", PUBLIC_KEYS_PATH, ref), null, JSON_CONTENT_TYPE);
+        put(PUBLIC_KEYS_PATH, String.format("ref=%s", ref), null, JSON_CONTENT_TYPE);
     }
 
     public void deactivatePublicKey(String ref)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        delete(String.format("%s?ref=%s", PUBLIC_KEYS_PATH, ref), null, JSON_CONTENT_TYPE);
+        delete(PUBLIC_KEYS_PATH, String.format("ref=%s", ref), JSON_CONTENT_TYPE);
     }
 
     @Override

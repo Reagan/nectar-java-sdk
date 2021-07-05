@@ -37,7 +37,7 @@ public class UsersFactory extends BaseFactory<User> {
     public void updateUser(Map<String, Object> params)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException{
-        JSONObject resp = put(USERS_PATH, new Payload(params),JSON_CONTENT_TYPE);
+        JSONObject resp = put(USERS_PATH, "", new Payload(params),JSON_CONTENT_TYPE);
     }
 
     public void deleteUser()

@@ -39,7 +39,7 @@ public class NotificationsFactory extends BaseFactory<Notification> {
         params.put("notification_ref", notificationRef);
         params.put("status", status);
         params.put("timestamp", timestamp);
-        put(NOTIFICATIONS_PATH, new Payload(params), JSON_CONTENT_TYPE);
+        put(NOTIFICATIONS_PATH, "", new Payload(params), JSON_CONTENT_TYPE);
     }
 
     public List<Notification> extractMultipleFrom(JSONObject responseObj)

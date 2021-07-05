@@ -37,13 +37,13 @@ public class ConfigurationsFactory extends BaseFactory<Configuration> {
     public void activateConfiguration(String ref)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        put(String.format("%s?ref=%s", CONFIGURATIONS_PATH, ref), null, JSON_CONTENT_TYPE);
+        put(CONFIGURATIONS_PATH, String.format("ref=%s", ref), null, JSON_CONTENT_TYPE);
     }
 
     public void deactivateConfiguration(String ref)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-        delete(String.format("%s?ref=%s", CONFIGURATIONS_PATH, ref), null, JSON_CONTENT_TYPE);
+        delete(CONFIGURATIONS_PATH, String.format("ref=%s", ref), JSON_CONTENT_TYPE);
     }
 
     public List<Configuration> extractMultipleFrom(JSONObject responseObj)

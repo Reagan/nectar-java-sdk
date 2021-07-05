@@ -26,8 +26,8 @@ public class NectarTest {
 //            test.deleteUser();
 //
 //            test.getPublicKeys();
-            test.createPublicKey();
-//            test.activatePublicKey();
+//            test.createPublicKey();
+            test.activatePublicKey();
 //            test.deactivatePublicKey();
 //
 //            test.getNotifications();
@@ -135,7 +135,7 @@ public class NectarTest {
     }
 
     private void activatePublicKey() throws Exception {
-        nectar.getPublicKeysFactory().activatePublicKey("ref");
+        nectar.getPublicKeysFactory().activatePublicKey("d97bf39e-94ce-4fe9-8057-02d97eb3cbca");
         System.out.println("Activate Public Key\n====================\n");
     }
 
