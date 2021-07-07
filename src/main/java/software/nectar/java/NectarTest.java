@@ -41,9 +41,9 @@ public class NectarTest {
 //            test.deactivateCredentials();
 //
 //            test.getConfiguration();
-            test.createConfiguration();
+//            test.createConfiguration();
 //            test.activateConfiguration();
-//            test.deactivateConfiguration();
+            test.deactivateConfiguration();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -208,12 +208,12 @@ public class NectarTest {
 
     public void activateConfiguration() throws Exception {
         System.out.println("Activate Configuration\n====================\n");
-        nectar.getConfigurationsFactory().activateConfiguration("ref");
+        nectar.getConfigurationsFactory().activateConfiguration("ac3380d8-5d85-4161-92e5-03c1dc62de3d");
 
     }
 
     public void deactivateConfiguration() throws Exception {
         System.out.println("Deactivate Configuration\n====================\n");
-        nectar.getConfigurationsFactory().deactivateConfiguration("ref");
+        nectar.getConfigurationsFactory().deactivateConfiguration("ac3380d8-5d85-4161-92e5-03c1dc62de3d");
     }
 }
