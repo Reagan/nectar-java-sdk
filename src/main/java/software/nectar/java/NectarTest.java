@@ -37,11 +37,11 @@ public class NectarTest {
 //            test.getTransactions();
 //
 //            test.getCredentials();
-            test.activateCredentials();
+//            test.activateCredentials();
 //            test.deactivateCredentials();
 //
 //            test.getConfiguration();
-//            test.createConfiguration();
+            test.createConfiguration();
 //            test.activateConfiguration();
 //            test.deactivateConfiguration();
 
@@ -175,8 +175,8 @@ public class NectarTest {
     }
 
     private void deactivateCredentials() throws Exception {
-        System.out.println("Deactivate Credentials\n====================\n%s\n");
-        nectar.getCredentialsFactory().deactivateCredentials("ref");
+        System.out.println("Deactivate Credentials\n====================\n");
+        nectar.getCredentialsFactory().deactivateCredentials("d1978978-5535-4c37-b4de-b05dbe2f09d4");
     }
 
     private void getConfiguration() throws Exception {
@@ -185,12 +185,24 @@ public class NectarTest {
     }
 
     public void createConfiguration() throws Exception {
-        Map<String, Object> params = new HashMap<>();
-        params.put("name", "Config");
-        params.put("data", "data");
-        params.put("digest", "digest");
-        params.put("key", "key");
-        Configuration configuration = nectar.getConfigurationsFactory().createConfiguration(params);
+        String yamlConfig = "---\n" +
+                "name: example_config\n" +
+                "key_expiry_no: 255\n" +
+                "encryption_algorithm: sta\n" +
+                "token_carrier_type: numeric\n" +
+                "decoder_key_generation_algorithm: 04\n" +
+                "tariff_index: 01\n" +
+                "key_revision_no: 1\n" +
+                "vending_key: 0123456789abcdef\n" +
+                "supply_group_code: 123456\n" +
+                "key_type: 3\n" +
+                "base_date: 2035\n" +
+                "issuer_identification_no: 600727";
+        String symmetricKey = "v8y/B?E(H+MbQeTh";
+        String privateKey = "\"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\";";
+
+        Configuration configuration = nectar.getConfigurationsFactory()
+                .createConfiguration(yamlConfig, symmetricKey, privateKey);
         System.out.println(String.format("Create Configuration\n====================\n%s\n", configuration));
     }
 
