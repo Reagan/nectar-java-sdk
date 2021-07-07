@@ -25,7 +25,11 @@ public class UsersFactory extends BaseFactory<User> {
             throws NoSuchAlgorithmException, InvalidKeyException,
             IOException, ApiResponseException {
         JSONObject resp = post(USERS_PATH, new Payload(params), JSON_CONTENT_TYPE);
-        return (String) ((JSONObject) resp.get("data")).get("user_ref");
+        if ((Integer) ((JSONObject) resp.get("status")).get("code") == 200)
+            return (String) ((JSONObject) resp.get("data")).get("user_ref");
+        else throw new ApiResponseException(String.format("Status Code %d %s",
+                (Integer) ((JSONObject) resp.get("status")).get("code"),
+                (String) ((JSONObject) resp.get("status")).get("message")));
     }
 
     public User getUser()

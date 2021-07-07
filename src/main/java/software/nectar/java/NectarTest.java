@@ -19,9 +19,9 @@ public class NectarTest {
             NectarTest test = new NectarTest();
 //            test.getToken();
 //            test.generateToken();
-
+//
 //            test.getUser();
-//            test.createUser();
+            test.createUser();
 //            test.updateUser();
 //            test.deleteUser();
 //
@@ -43,7 +43,7 @@ public class NectarTest {
 //            test.getConfiguration();
 //            test.createConfiguration();
 //            test.activateConfiguration();
-            test.deactivateConfiguration();
+//            test.deactivateConfiguration();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -55,8 +55,7 @@ public class NectarTest {
         System.out.println(String.format("Get Token\n====================\n%s\n", generatedToken));
     }
 
-    private void generateToken() throws Exception {
-        Map<String, Object> params = new HashMap<>();
+    private void generateToken() throws Exception { Map<String, Object> params = new HashMap<>();
         params.put("class", "2");
         params.put("subclass", "7");
         params.put("token_id", "2018-05-16T07:29");

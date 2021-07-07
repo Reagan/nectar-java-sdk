@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import software.nectar.java.factory.base.BaseFactory;
 import software.nectar.java.factory.base.exceptions.ApiResponseException;
 import software.nectar.java.models.Token;
+import software.nectar.java.utils.Payload;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -30,8 +31,7 @@ public class TokensFactory extends BaseFactory<Token> {
     public Token generateToken(Map<String, Object> params)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
-//        return post(TOKEN_PATH, new Payload(params), JSON_CONTENT_TYPE);
-        return null;
+        return extractFrom(post(TOKEN_PATH, new Payload(params), JSON_CONTENT_TYPE));
     }
 
     public List<Token> extractMultipleFrom(JSONObject responseObj)
