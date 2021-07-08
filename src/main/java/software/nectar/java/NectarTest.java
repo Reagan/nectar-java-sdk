@@ -17,33 +17,33 @@ public class NectarTest {
     public static void main(String[] args) {
         try {
             NectarTest test = new NectarTest();
-//            test.getToken();
-//            test.generateToken();
-//
-//            test.getUser();
-//            test.createUser();
-//            test.updateUser();
-//            test.deleteUser();
-//
-//            test.getPublicKeys();
-//            test.createPublicKey();
-//            test.activatePublicKey();
-//            test.deactivatePublicKey();
-//
-//            test.getNotifications();
-//            test.setNotificationsReadStatus();
-//
-//            test.getCredits();
-//            test.getTransactions();
-//
-//            test.getCredentials();
-//            test.activateCredentials();
-//            test.deactivateCredentials();
-//
+            test.getToken();
+            test.generateToken();
+
+            test.getUser();
+            test.createUser();
+            test.updateUser();
+            test.deleteUser();
+
+            test.getPublicKeys();
+            test.createPublicKey();
+            test.activatePublicKey();
+            test.deactivatePublicKey();
+
+            test.getNotifications();
+            test.setNotificationsReadStatus();
+
+            test.getCredits();
+            test.getTransactions();
+
+            test.getCredentials();
+            test.activateCredentials();
+            test.deactivateCredentials();
+
             test.getConfiguration();
-//            test.createConfiguration();
-//            test.activateConfiguration();
-//            test.deactivateConfiguration();
+            test.createConfiguration();
+            test.activateConfiguration();
+            test.deactivateConfiguration();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
