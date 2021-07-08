@@ -21,7 +21,7 @@ public class NectarTest {
 //            test.generateToken();
 //
 //            test.getUser();
-            test.createUser();
+//            test.createUser();
 //            test.updateUser();
 //            test.deleteUser();
 //
@@ -40,7 +40,7 @@ public class NectarTest {
 //            test.activateCredentials();
 //            test.deactivateCredentials();
 //
-//            test.getConfiguration();
+            test.getConfiguration();
 //            test.createConfiguration();
 //            test.activateConfiguration();
 //            test.deactivateConfiguration();
@@ -179,7 +179,7 @@ public class NectarTest {
     }
 
     private void getConfiguration() throws Exception {
-        Configuration configuration = nectar.getConfigurationsFactory().getConfigurations("47693f75-b77f-4280-b00f-9c0d90111a63", true);
+        Configuration configuration = nectar.getConfigurationsFactory().getConfiguration("47693f75-b77f-4280-b00f-9c0d90111a63", true);
         System.out.println(String.format("Get Configurations\n====================\n%s\n", configuration));
     }
 

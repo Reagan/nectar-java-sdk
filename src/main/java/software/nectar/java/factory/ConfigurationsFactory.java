@@ -34,7 +34,7 @@ public class ConfigurationsFactory extends BaseFactory<Configuration> {
                 new Payload(encryptParams(yamlConfig, symmetricKey, privateKey)), JSON_CONTENT_TYPE));
     }
 
-    public Configuration getConfigurations(String ref, boolean detailed)
+    public Configuration getConfiguration(String ref, boolean detailed)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
         return extractFrom(get(CONFIGURATIONS_PATH, String.format("ref=%s&detailed=%b", ref, detailed),

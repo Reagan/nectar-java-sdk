@@ -28,8 +28,8 @@ public class UsersFactory extends BaseFactory<User> {
         if ((Integer) ((JSONObject) resp.get("status")).get("code") == 200)
             return (String) ((JSONObject) resp.get("data")).get("user_ref");
         else throw new ApiResponseException(String.format("Status Code %d %s",
-                (Integer) ((JSONObject) resp.get("status")).get("code"),
-                (String) ((JSONObject) resp.get("status")).get("message")));
+                ((JSONObject) resp.get("status")).get("code"),
+                ((JSONObject) resp.get("status")).get("message")));
     }
 
     public User getUser()
