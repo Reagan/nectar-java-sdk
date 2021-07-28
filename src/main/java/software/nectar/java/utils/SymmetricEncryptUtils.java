@@ -13,12 +13,13 @@ import org.bouncycastle.crypto.params.ParametersWithIV;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.Security;
 import java.util.Random;
 
 public class SymmetricEncryptUtils {
 
-    private static final Charset UTF8 = Charset.forName("UTF-8");
+    private static final Charset UTF8 = StandardCharsets.UTF_8;
     private static final int AES_NIVBITS = 128; // CBC Initialization Vector (same as cipher block size) [16 bytes]
 
     private static void init() {

@@ -55,7 +55,8 @@ public class NectarTest {
         System.out.println(String.format("Get Token\n====================\n%s\n", generatedToken));
     }
 
-    private void generateToken() throws Exception { Map<String, Object> params = new HashMap<>();
+    private void generateToken() throws Exception {
+        Map<String, Object> params = new HashMap<>();
         params.put("class", "2");
         params.put("subclass", "7");
         params.put("token_id", "2018-05-16T07:29");
@@ -63,16 +64,7 @@ public class NectarTest {
         params.put("random_no", "9");
         params.put("is_stid", "false");
         params.put("drn", "47500150231");
-        params.put("key_type", "0");
-        params.put("supply_group_code", "000046");
-        params.put("tariff_index", "01");
-        params.put("key_revision_no", "1");
-        params.put("issuer_identification_no", "600727");
-        params.put("base_date", "1993");
-        params.put("key_expiry_no", "255");
-        params.put("encryption_algorithm", "sta");
-        params.put("decoder_key_generation_algorithm", "02");
-        params.put("vending_key", "0abc12def3456789");
+        params.put("config_ref", "9f4e2cf3-4d07-4e05-9d1b-6eef6e22f620");
         params.put("debug", "false");
 
         Token generatedToken = nectar.getTokenFactory()

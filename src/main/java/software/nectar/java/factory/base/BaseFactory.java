@@ -23,7 +23,7 @@ import java.util.List;
 abstract public class BaseFactory<T> {
 
     protected final String JSON_CONTENT_TYPE = "application/json";
-    protected final String BASE_PATH = "http://localhost:2000";
+    protected final String BASE_PATH = "https://api.nectar.software";
     protected String key;
     protected String secret;
     protected enum Http {

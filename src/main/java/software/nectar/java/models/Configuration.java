@@ -12,6 +12,7 @@ public class Configuration {
 
     public Configuration(String name, String userRef, boolean activated,
                          String ref, Instant createdAt) {
+        setName(name);
         setUserRef(userRef);
         setActivated(activated);
         setRef(ref);
