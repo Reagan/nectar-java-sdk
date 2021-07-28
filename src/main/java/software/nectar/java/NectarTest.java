@@ -78,30 +78,31 @@ public class NectarTest {
     }
 
     private void createUser() throws Exception {
-        Map<String, Object> params = new HashMap<>();
-        params.put("first_name", "first_name");
-        params.put("last_name", "last_name");
-        params.put("username", "username");
-        params.put("password", "password");
-        params.put("phone_no", "0700100100");
-        params.put("image_url", "https://image.url");
-        params.put("email", "user@email.com");
-        params.put("activated", true);
-        String createdUserRef = nectar.getUsersFactory().createUser(params);
+        String firstName = "first_name";
+        String lastName = "last_name";
+        String username = "username";
+        String password = "password";
+        String phoneNo = "0700100100";
+        String imageUrl = "https://image.url";
+        String email = "user@email.com";
+
+        String createdUserRef = nectar.getUsersFactory()
+                .createUser(firstName, lastName, username, password,
+                            phoneNo, imageUrl, email, true);
         System.out.println(String.format("Create User\n====================\n%s\n", createdUserRef));
     }
 
     private void updateUser() throws Exception {
-        Map<String, Object> params = new HashMap<>();
-        params.put("first_name", "first_name");
-        params.put("last_name", "last_name");
-        params.put("username", "username");
-        params.put("password", "password");
-        params.put("phone_no", "0700100100");
-        params.put("image_url", "https://image.url");
-        params.put("email", "user@email.com");
-        params.put("activated", true);
-        nectar.getUsersFactory().updateUser(params);
+        String firstName = "first_name";
+        String lastName = "last_name";
+        String username = "username";
+        String password = "password";
+        String phoneNo = "0700100100";
+        String imageUrl = "https://image.url";
+        String email = "user@email.com";
+
+        nectar.getUsersFactory().updateUser(firstName, lastName, username, password,
+                                            phoneNo, imageUrl, email, true);
         System.out.println(String.format("Update User\n====================\n"));
     }
 

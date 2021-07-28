@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,9 +22,21 @@ public class UsersFactory extends BaseFactory<User> {
         super(key, secret);
     }
 
-    public String createUser(Map<String, Object> params)
+    public String createUser(String firstName, String lastName, String username,
+                             String password, String phoneNo, String imageUrl,
+                             String email, boolean activated)
             throws NoSuchAlgorithmException, InvalidKeyException,
             IOException, ApiResponseException {
+        Map<String, Object> params = new HashMap<>();
+        params.put("first_name", firstName);
+        params.put("last_name", lastName);
+        params.put("username", username);
+        params.put("password", password);
+        params.put("phone_no", phoneNo);
+        params.put("image_url", imageUrl);
+        params.put("email", email);
+        params.put("activated", activated);
+
         JSONObject resp = post(USERS_PATH, new Payload(params), JSON_CONTENT_TYPE);
         if ((Integer) ((JSONObject) resp.get("status")).get("code") == 200)
             return (String) ((JSONObject) resp.get("data")).get("user_ref");
@@ -38,9 +51,21 @@ public class UsersFactory extends BaseFactory<User> {
         return extractFrom(get(USERS_PATH, "", JSON_CONTENT_TYPE));
     }
 
-    public void updateUser(Map<String, Object> params)
+    public void updateUser(String firstName, String lastName, String username,
+                           String password, String phoneNo, String imageUrl,
+                           String email, boolean activated)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException{
+        Map<String, Object> params = new HashMap<>();
+        params.put("first_name", firstName);
+        params.put("last_name", lastName);
+        params.put("username", username);
+        params.put("password", password);
+        params.put("phone_no", phoneNo);
+        params.put("image_url", imageUrl);
+        params.put("email", email);
+        params.put("activated", activated);
+
         JSONObject resp = put(USERS_PATH, "", new Payload(params),JSON_CONTENT_TYPE);
     }
 
