@@ -56,19 +56,17 @@ public class NectarTest {
     }
 
     private void generateToken() throws Exception {
-        Map<String, Object> params = new HashMap<>();
-        params.put("class", "2");
-        params.put("subclass", "7");
-        params.put("token_id", "2018-05-16T07:29");
-        params.put("wm_factor", "10");
-        params.put("random_no", "9");
-        params.put("is_stid", "false");
-        params.put("drn", "47500150231");
-        params.put("config_ref", "9f4e2cf3-4d07-4e05-9d1b-6eef6e22f620");
-        params.put("debug", "false");
+        Instant generationTime = Instant.parse("2018-05-16T07:29");
+        int wmFactor = 10;
+        int randomNo = 5;
+        boolean isStid = false;
+        String drn = "47500150231";
+        String configRef = "9f4e2cf3-4d07-4e05-9d1b-6eef6e22f620";
+        boolean debug = false;
 
         Token generatedToken = nectar.getTokenFactory()
-                .generateToken(params);
+                .generateSetWaterMeterFactorToken(generationTime, wmFactor, randomNo,
+                                                    isStid, drn, configRef, debug);
         System.out.println(String.format("Generate Token\n====================\n%s\n", generatedToken));
     }
 
