@@ -1,6 +1,6 @@
 package software.nectar.java;
 
-import software.nectar.java.factory.TokensFactory;
+import software.nectar.java.factory.*;
 
 public class Nectar {
 
@@ -30,5 +30,29 @@ public class Nectar {
 
     public TokensFactory getTokenFactory() {
         return new TokensFactory(key, secret);
+    }
+
+    public UsersFactory getUsersFactory() {
+        return new UsersFactory(key, secret);
+    }
+
+    public PublicKeysFactory getPublicKeysFactory() {
+        return new PublicKeysFactory(key, secret);
+    }
+
+    public NotificationsFactory getNotificationsFactory() {
+        return new NotificationsFactory(key, secret);
+    }
+
+    public CreditsFactory getCreditsFactory() {
+        return new CreditsFactory(key, secret);
+    }
+
+    public CredentialsFactory getCredentialsFactory() {
+        return new CredentialsFactory(key, secret);
+    }
+
+    public ConfigurationsFactory getConfigurationsFactory() {
+        return new ConfigurationsFactory(key, secret);
     }
 }
