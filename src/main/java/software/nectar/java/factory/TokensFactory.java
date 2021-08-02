@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import software.nectar.java.factory.base.BaseFactory;
 import software.nectar.java.factory.base.exceptions.ApiResponseException;
 import software.nectar.java.models.Token;
+import software.nectar.java.utils.DateTime;
 import software.nectar.java.utils.Payload;
 
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "0");
         params.put("subclass", "0");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("amount", amount);
         params.put("random_no", randomNo);
         params.put("is_stid", isStid);
@@ -57,7 +58,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "0");
         params.put("subclass", "1");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("amount", amount);
         params.put("random_no", randomNo);
         params.put("is_stid", isStid);
@@ -75,7 +76,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "0");
         params.put("subclass", "2");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("amount", amount);
         params.put("random_no", randomNo);
         params.put("is_stid", isStid);
@@ -94,7 +95,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "1");
         params.put("subclass", "0");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("control", control);
         params.put("manufacturer_code", manufacturerCode);
         params.put("is_stid", isStid);
@@ -113,7 +114,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "1");
         params.put("subclass", "1");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("control", control);
         params.put("manufacturer_code", manufacturerCode);
         params.put("is_stid", isStid);
@@ -132,7 +133,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "2");
         params.put("subclass", "0");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("maximum_power_limit", maximumPowerLimit);
         params.put("random_no", randomNo);
         params.put("is_stid", isStid);
@@ -151,7 +152,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "2");
         params.put("subclass", "1");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("register", register);
         params.put("random_no", randomNo);
         params.put("is_stid", isStid);
@@ -170,7 +171,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "2");
         params.put("subclass", "2");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("tariff_rate", tariffRate);
         params.put("random_no", randomNo);
         params.put("is_stid", isStid);
@@ -191,7 +192,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "2");
         params.put("subclass", "3");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("new_vending_key", newVendingKey);
         params.put("new_supply_group_code", newSupplyGroupCode);
         params.put("new_tariff_index", newTariffIndex);
@@ -220,7 +221,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "2");
         params.put("subclass", "4");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("new_vending_key", newVendingKey);
         params.put("new_supply_group_code", newSupplyGroupCode);
         params.put("new_tariff_index", newTariffIndex);
@@ -247,7 +248,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "2");
         params.put("subclass", "5");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("pad", pad);
         params.put("random_no", randomNo);
         params.put("is_stid", isStid);
@@ -266,7 +267,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "2");
         params.put("subclass", "6");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("mppul", mppul);
         params.put("random_no", randomNo);
         params.put("is_stid", isStid);
@@ -285,7 +286,7 @@ public class TokensFactory extends BaseFactory<Token> {
         Map<String, Object> params = new HashMap<>();
         params.put("class", "2");
         params.put("subclass", "7");
-        params.put("token_id", tokenId.toString());
+        params.put("token_id", DateTime.formatDate(tokenId));
         params.put("wm_factor", wmFactor);
         params.put("random_no", randomNo);
         params.put("is_stid", isStid);

@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class NectarTest {
 
-    private final String KEY = "4d49b676-5aab-48ac-b6c3-3ff4c82bb229";
-    private final String SECRET = "8d313aa9-6cb3-4c0a-a547-f905f5a952e0";
+    private final String KEY = "5f16bc28-e5cf-4088-b07f-9ea90b3572a2";
+    private final String SECRET = "99a16bed-8461-4fe0-ab5d-8fd44d4e5308";
 
     private Nectar nectar = new Nectar(KEY, SECRET);
 
@@ -56,13 +56,10 @@ public class NectarTest {
     }
 
     private void generateToken() throws Exception {
-        Instant generationTime = Instant.parse("2018-05-16T07:29");
-        int wmFactor = 10;
-        int randomNo = 5;
-        boolean isStid = false;
-        String drn = "47500150231";
-        String configRef = "9f4e2cf3-4d07-4e05-9d1b-6eef6e22f620";
-        boolean debug = false;
+        Instant generationTime = Instant.parse("2018-05-16T07:29:00.00Z");
+        int wmFactor = 10, randomNo = 5;
+        boolean isStid = false, debug = false;
+        String drn = "47500150231", configRef = "cbf43d1f-8c2d-44a0-95a9-9c3c13ec846c";
 
         Token generatedToken = nectar.getTokenFactory()
                 .generateSetWaterMeterFactorToken(generationTime, wmFactor, randomNo,
