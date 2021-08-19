@@ -12,6 +12,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,9 +31,13 @@ public class PublicKeysFactory extends BaseFactory<PublicKey> {
         return extractMultipleFrom(gets(PUBLIC_KEYS_PATH, path, JSON_CONTENT_TYPE));
     }
 
-    public PublicKey createPublicKey(Map<String, Object> params)
+    public PublicKey createPublicKey(String name, String key, boolean activated)
             throws NoSuchAlgorithmException, InvalidKeyException,
                     IOException, ApiResponseException {
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", name);
+        params.put("key", key);
+        params.put("activated", activated);
         return extractFrom(post(PUBLIC_KEYS_PATH, new Payload(params), JSON_CONTENT_TYPE));
     }
 
