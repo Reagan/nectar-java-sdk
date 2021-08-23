@@ -68,3 +68,5 @@ gradle-app.setting
 
 # log files
 payments-service.journal
+
+gradle.properties
