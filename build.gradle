@@ -2,10 +2,13 @@ plugins {
     id 'java'
     id 'maven'
     id 'application'
+    id 'maven-publish'
+    id 'signing'
 }
 
 group 'software.nectar.java'
-version '1.0-SNAPSHOT'
+archivesBaseName = 'nectar-api-sdk'
+version '0.9.1-alpha'
 
 description = """Nectar Java SDK"""
 
@@ -20,12 +23,51 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-
-dependencies {
     compile group: 'org.json', name: 'json', version: '20210307'
     compile group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.67'
     compile group: 'commons-codec', name: 'commons-codec', version: '1.15'
     testCompile group: 'junit', name: 'junit', version:'4.12'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            pom {
+                name = 'Nectar API SDK'
+                description = 'An API to use Nectar to generate STS prepaid tokens'
+                url = 'https://nectar.software'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'reagan'
+                        name = 'Reagan Mbitiru'
+                        email = 'reagan@nectar.software'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://bitbucket.org:nectar_co_ke/nectar-java-sdk.git'
+                    developerConnection = 'scm:git:ssh://bitbucket.org:nectar_co_ke/nectar-java-sdk.git'
+                    url = 'https://bitbucket.org/nectar_co_ke/nectar-java-sdk/src/'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = "$ossrhUsername"
+                password = "$ossrhPassword"
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.maven
 }
