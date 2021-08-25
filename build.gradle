@@ -8,7 +8,7 @@ plugins {
 
 group 'software.nectar.java'
 archivesBaseName = 'nectar-api-sdk'
-version '0.9.1-alpha'
+version '0.9.2-alpha'
 
 description = """Nectar Java SDK"""
 
@@ -32,6 +32,7 @@ dependencies {
 publishing {
     publications {
         maven(MavenPublication) {
+            from components.java
             pom {
                 name = 'Nectar API SDK'
                 description = 'An API to use Nectar to generate STS prepaid tokens'
@@ -66,6 +67,11 @@ publishing {
             }
         }
     }
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
 
 signing {

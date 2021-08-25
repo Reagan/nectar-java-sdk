@@ -2,6 +2,12 @@ package software.nectar.java;
 
 import software.nectar.java.factory.*;
 
+/**
+ * This is the entry point to the Nectar API Java SDK. Implementations of the Nectar Java SDK must iintialize this class.
+ *
+ * @author Reagan Mbitiru (reagan@nectar.software)
+ *
+ */
 public class Nectar {
 
     private String key;
